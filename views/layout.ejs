@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title><%= title %></title>
+        <link rel="stylesheet" href="/css/lauout.css">
+        <%- style %>
+    </head>
+    <body>
+        
+        <!-- adding header from view -->
+        <%- include('_header'); %>
+
+        <%- body %>
+        
+        <!-- adding footer from view -->
+        <%- include('_footer'); %>
+        
+        <%- script %>
+    </body>
+</html>
