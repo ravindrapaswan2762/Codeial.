@@ -3,24 +3,25 @@
 const User = require('../models/user');
 
 module.exports.profile = async function(req, res) {
-    try {
-        if (req.cookies.user_id) {
-            const user = await User.findById(req.cookies.user_id);
+    // try {
+    //     if (req.cookies.user_id) {
+    //         const user = await User.findById(req.cookies.user_id);
             
-            if (user) {
-                return res.render('user_profile', {
-                    title: 'User Profile',
-                    user: user.name,
-                    email: user.email
-                });
-            }
-        }
+    //         if (user) {
+    //             return res.render('user_profile', {
+    //                 title: 'User Profile',
+    //                 user: user.name,
+    //                 email: user.email
+    //             });
+    //         }
+    //     }
         
-        return res.redirect('/users/sign-in');
-    } catch (err) {
-        console.log('Error:', err);
-        return res.redirect('/users/sign-in');
-    }
+    //     return res.redirect('/users/sign-in');
+    // } catch (err) {
+    //     console.log('Error:', err);
+    //     return res.redirect('/users/sign-in');
+    // }
+    return res.render('home', {title: "heyyyyy"});
 };
 
 
