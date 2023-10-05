@@ -47,7 +47,6 @@ module.exports.signUp = function(req, res){
 
 module.exports.signOut = function(req, res) {
     // Clear the "myCookie" cookie
-    console.log("req.cookies ", req.cookies);
     res.clearCookie('codeial');
   
     return res.redirect('back');
