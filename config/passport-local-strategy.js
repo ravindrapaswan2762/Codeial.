@@ -48,7 +48,7 @@ passport.deserializeUser(async function(id, done) {
 passport.checkAuthentication = function(req, res, next){
     // if user is signed-in then pass the requist to the next function(controller action).
     
-    if(req.isAuthenticated){
+    if(req.isAuthenticated()){
         return next();
     }
     //if the user is not signed-in
@@ -56,7 +56,7 @@ passport.checkAuthentication = function(req, res, next){
 }
 
 passport.setAuthenticatedUser = function(req, res, next){
-    if(req.isAuthenticated){
+    if(req.isAuthenticated()){
         // req.res contains the curent signed-in user info from cookie. and i am sending just to this local for using from views.
         // console.log('req.user ', req.user);
         res.locals.user = req.user; 

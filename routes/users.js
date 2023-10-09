@@ -13,6 +13,8 @@ router.get('/sign-in', userController.signIn);
 router.get('/sign-out', userController.signOut);
 router.post('/create', userController.create);
 
+// user is signing-in using 'passport.authenticate' where 'local' authentication strategy is used
+//                             inbuild function in pasport library 
 router.post('/create-session', passport.authenticate(
     'local', 
     { failureRedirect: '/users/sign-in' }

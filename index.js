@@ -14,8 +14,17 @@ const passport = require('passport'); // for authentication
 const passportLocal = require('./config/passport-local-strategy');// it's a strategy, that passport using  it for authentication
 
 const mongoStore = require('connect-mongo')(session);  // for keep all the user loged-in permanently even if server is restarted.`
+
+const sassMiddleware = require('node-sass-middleware');
 // -------------------------------
- 
+app.use(sassMiddleware({
+    src: './assets/scss', //place where pickup 'scss' file to convert into css
+    dest: './assets/css', // place where i need to put my converted css file.
+    debug: true,
+    outputStyle: 'extends',
+    prefix: '/css'
+})) 
+
 app.use(express.urlencoded());
 app.use(cookieParser());
 
