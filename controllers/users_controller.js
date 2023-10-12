@@ -6,13 +6,14 @@ module.exports.profile = async function(req, res) {
     try {
         
         if (req.user) {
+
             const user = await User.findOne(req.user);
             
             if (user) {
                 
                 return res.render('user_profile', {
-                    title: 'ravindra paswan',
-                    user: user.name,
+                    title: user.name,
+                    name: user.name,
                     email: user.email
                 });
             }
@@ -49,7 +50,7 @@ module.exports.signOut = function(req, res) {
     // Clear the "myCookie" cookie
     res.clearCookie('codeial');
   
-    return res.redirect('back');
+    return res.redirect('sign-in');
   };
 
 //GET THE SIGN-UP DATA
