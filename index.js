@@ -2,18 +2,17 @@ const express = require('express');
 const app = express();
 const port = 8000;
 
-const cookieParser = require('cookie-parser');
-
 const expressLayouts = require('express-ejs-layouts'); // accessing layouts
 // const { urlencoded } = require('body-parser');
 
 const db = require('./config/mongoose');
- 
+
 const session = require('express-session'); // this is for creating the session, means it helps to store the id in cookie
+const cookieParser = require('cookie-parser'); // it used to get cookie-data from cookie for authentication.
 const passport = require('passport'); // for authentication
 const passportLocal = require('./config/passport-local-strategy');// it's a strategy, that passport using  it for authentication
-
 const mongoStore = require('connect-mongo')(session);  // for keep all the user loged-in permanently even if server is restarted.`
+                                                       // through store the session in database
 
 const sassMiddleware = require('node-sass-middleware');
 // -------------------------------
@@ -44,7 +43,7 @@ app.set('views', './views');//defining ejs path
 // A middle ware that takes the session cookie and then encriptb it, before the storing in the browser.----------------
 app.use(session(
     {
-        name: 'codeial',
+        name: 'codeial', 
         secret: 'blahsomething', // change the secret, before deploying in production mode.
         saveUninitialized: false, // if user is not loged-in then user cookie should not set in the browser.  
         resave: false, // if user is loged-in and older cookie is already present in the browser then it should not resave/replace
@@ -53,7 +52,7 @@ app.use(session(
             maxAge: (100 * 60 * 100) // after the 'time-in-milliSecond' the session will automatically expired/deleted
                                     // then user will loged-out.
         },
-        store: new mongoStore(
+        store: new mongoStore( // A configuration that specifies how session-data should be stored in the MongoDB database.
             {
                 mongooseConnection : db,
                 autoRemove: 'disabled'
