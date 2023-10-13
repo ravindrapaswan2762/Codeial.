@@ -1,3 +1,21 @@
 header {
-  background-color: #74a474;
-  color: #151814; }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+  background-color: lightseagreen;
+  color: white; }
+
+.signin-signup {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 8rem; }
+
+.signin-signup a {
+  text-decoration: none;
+  font-weight: bold;
+  color: whitesmoke; }
+
+.signin-signup li {
+  list-style-type: none; }
