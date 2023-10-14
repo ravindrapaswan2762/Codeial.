@@ -19,3 +19,6 @@ header {
 
 .signin-signup li {
   list-style-type: none; }
+
+.signin-signup li a:hover {
+  color: lightgray; }
