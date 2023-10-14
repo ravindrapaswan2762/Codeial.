@@ -28,9 +28,20 @@
                                 <input type="submit" value="Add Comment">
                             </form>
                         <%}%>
+
+                        <div class="post-comments-list">
+                            <div id="posted-comment">
+                                <%for(let comment of post.comments){%>
+                                    <p>
+                                        <small style="font-weight: bold;"><%= comment.user.name%>: </small>
+                                        <%= comment.content%>
+                                    </p>
+                                <%}%>
+                            </div>
+                        </div>
                     </div>
+
                     <br/>
-                    
                 </li>
     
             <%} %>
