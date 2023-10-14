@@ -1,0 +1,10 @@
+#post-list-container {
+  display: flex;
+  text-align: center;
+  justify-content: center; }
+
+ol {
+  padding: 0rem 25rem; }
+  ol li {
+    border: 2px solid black;
+    margin: 3px; }

@@ -75,6 +75,8 @@ module.exports.create = async function(req, res) {
 };
 
 module.exports.createSession = function(req, res){
+    console.log(req.user)
+    console.log('cookie: ',req.cookies)
     return res.redirect('/');
 }
   

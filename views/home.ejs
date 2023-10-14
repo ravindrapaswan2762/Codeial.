@@ -1,12 +1,30 @@
+<link rel="stylesheet" href="/css/home.css">
 
 <h1>
-    Codeial / <%= title %>
+    <%= title %>
 </h1>
 
 <section id="feed-posts">
     <h4>Posts</h4>
-    <form action="/users/posts" id="new-form-post" method="POST">
+    <form action="/posts/create" id="new-form-post" method="POST">
         <textarea name="content" cols="30" rows="3" placeholder="Type Here.."></textarea>
         <input type="submit" value="Post">
     </form>
+
+    <div id="post-list-container">
+        <ol type="1">
+            <% for(let i of allPosts){%>
+                <li>
+                    <%= i.content%>
+                    <small style="font-weight: bolder;"><%= i.user.name%>: </small>
+                    <br/><br/>
+        
+                </li>
+    
+            <%} %>
+        </ol>
+    </div>
+    
 </section>
+
+
