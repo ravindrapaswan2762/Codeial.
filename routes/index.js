@@ -12,6 +12,8 @@ router.get('/', Homecontrollers.home);// now router using/accsessing controller.
 router.use('/users', require('./users'));// switching one router to sibling router.
 router.use('/posts', require('./post'));
 
+router.use('/comments', require('./comment'));
+
 console.log('router loaded');
 
 //--------------------------------
