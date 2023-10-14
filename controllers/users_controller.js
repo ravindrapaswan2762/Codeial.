@@ -8,13 +8,13 @@ module.exports.profile = async function(req, res) {
         if (req.user) {
 
             const user = await User.findOne(req.user);
+            console.log('user : ', user)
             
             if (user) {
                 
                 return res.render('user_profile', {
-                    title: user.name,
-                    name: user.name,
-                    email: user.email
+                    title: 'User Profile',
+                    profile_user: user
                 });
             }
         }
@@ -80,4 +80,15 @@ module.exports.createSession = function(req, res){
     return res.redirect('/');
 }
   
-
+module.exports.update = async function(req, res){
+    try{
+        if(req.user.id == req.params.id){
+            await User.findByIdAndUpdate(req.params.id, {name: req.body.name, email: req.body.email});
+            return res.redirect('back');
+        }
+    }
+    catch(err){
+        console.log('Error in updating profile page.')
+        return res.status(401).send('Unauthorized');
+    }
+}

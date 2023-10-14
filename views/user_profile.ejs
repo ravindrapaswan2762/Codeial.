@@ -5,9 +5,6 @@
     Codeial / Profile Page
 </h1>
 
-<p>Name: <%= name%></p>
-<p>Email: <%= email%></p>
-
 <a href="/posts/showAllPostsAccordingToUsers">
     <button type="submit">Your Posts</button>
 </a>
@@ -15,3 +12,16 @@
 <a href="/users/sign-out">
     <button type="button">Sign-Out</button>
 </a>
+
+<br><br> 
+<%if(user.id == profile_user.id){%>
+    <!-- if user matches then show the form -->
+    <form action="/users/update/<%= profile_user.id%>" method="POST">
+        <input type="text" name="name" placeholder="Your Name" value="<%= profile_user.name%>" required >
+        <input type="text" name="email" placeholder="Your email" value="<%= profile_user.email%>" required >
+        <input type="submit" value="Update">
+    </form>
+<%}else{%>
+    <p>Name: <%= profile_user.name%></p>
+    <p>Email: <%= profile_user.email%></p>
+<%}%>
