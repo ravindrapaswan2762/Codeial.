@@ -14,7 +14,7 @@
 </a>
 
 <br><br> 
-<%if(user.id == profile_user.id){%>
+<%if(locals.user.id == profile_user.id){%>
     <!-- if user matches then show the form -->
     <form action="/users/update/<%= profile_user.id%>" method="POST">
         <input type="text" name="name" placeholder="Your Name" value="<%= profile_user.name%>" required >

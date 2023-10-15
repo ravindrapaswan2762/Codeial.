@@ -7,7 +7,7 @@ const userController = require('../controllers/users_controller');//accessing us
 const postController = require('../controllers/post_controllers');
 
 // if 'passport.checkAuthentication' is true then only the 'controllers.profile' called and render profile page, otherwise not.
-router.get('/profile', passport.checkAuthentication, userController.profile);
+router.get('/profile/:id', passport.checkAuthentication, userController.profile);
 
 router.get('/sign-up', userController.signUp);
 router.get('/sign-in', userController.signIn);

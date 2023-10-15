@@ -1,3 +1,11 @@
+#main-container{
+    display: flex;
+}
+#friend-list{
+    border-left: 2px solid lightgrey;
+    padding: 0px 3rem;
+}
+
 #post-list-container{
     display: flex;
     text-align: center;

@@ -7,10 +7,10 @@ module.exports.profile = async function(req, res) {
         
         if (req.user) {
 
-            const user = await User.findOne(req.user);
-            console.log('user : ', user)
+            const user = await User.findById(req.params.id);
             
             if (user) {
+                
                 
                 return res.render('user_profile', {
                     title: 'User Profile',

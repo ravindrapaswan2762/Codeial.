@@ -22,3 +22,7 @@ header {
 
 .signin-signup li a:hover {
   color: lightgray; }
+
+#logo {
+  text-decoration: none;
+  color: white; }

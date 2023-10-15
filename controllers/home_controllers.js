@@ -1,9 +1,12 @@
 //                        template:     module.exports.actionName = function(req, res){}
 const Post = require('../models/post');
+const User = require('../models/user');
 
 module.exports.home = async function(req, res){
     
     try {
+        const users = await User.find({});
+
         const allPosts = await Post.find({})
         .populate('user')
         .populate({
@@ -16,7 +19,8 @@ module.exports.home = async function(req, res){
     
         return res.render('home', {
             title: 'Codeial | Home',
-            allPosts: allPosts
+            allPosts: allPosts,
+            allUsers: users
         });
         
     } catch (err) {
@@ -24,3 +28,4 @@ module.exports.home = async function(req, res){
     }
     
 }   
+
