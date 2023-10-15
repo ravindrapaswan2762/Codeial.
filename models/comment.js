@@ -7,13 +7,13 @@ const commentSchema = new mongoose.Schema(
             required: true
         },
 
-        // comment belongs to a user
+        // comment belongs to a user.
         user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
         },
 
-        // comment belongs to a post
+        // comment belongs to a post.
         post: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Post'

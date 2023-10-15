@@ -5,9 +5,11 @@
     Codeial / Profile Page
 </h1>
 
-<a href="/posts/showAllPostsAccordingToUsers">
-    <button type="submit">Your Posts</button>
-</a>
+<%if(locals.user.id == profile_user.id){%>
+    <a href="/posts/showAllPostsAccordingToUsers">
+        <button type="submit">Your Posts</button>
+    </a>
+<%}%>
 
 <a href="/users/sign-out">
     <button type="button">Sign-Out</button>

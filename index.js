@@ -14,6 +14,9 @@ const passportLocal = require('./config/passport-local-strategy');// it's a stra
 const mongoStore = require('connect-mongo')(session);  // for keep all the user loged-in permanently even if server is restarted.`
                                                        // through store the session in database
 
+const flash = require('connect-flash');
+const customMiddleware = require('./config/middleware')
+
 const sassMiddleware = require('node-sass-middleware');
 // -------------------------------
 app.use(sassMiddleware({
@@ -67,6 +70,9 @@ app.use(session(
 app.use(passport.initialize());// inbuilt in passport
 app.use(passport.session()); // inbuilt in passport
 app.use(passport.setAuthenticatedUser); // from 'passport-local-strategy
+
+app.use(flash());
+app.use(customMiddleware.setFlash)
 // -----------------------------------
 
 app.use('/', require('./routes/index')); // use express router************************************************

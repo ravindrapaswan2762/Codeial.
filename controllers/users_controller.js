@@ -46,13 +46,6 @@ module.exports.signUp = function(req, res){
     });
 }
 
-module.exports.signOut = function(req, res) {
-    // Clear the "myCookie" cookie
-    res.clearCookie('codeial');
-  
-    return res.redirect('sign-in');
-  };
-
 //GET THE SIGN-UP DATA
 module.exports.create = async function(req, res) {
     if (req.body.password !== req.body.confirm_password) {
@@ -64,22 +57,35 @@ module.exports.create = async function(req, res) {
   
       if (!user) {
         const newUser = await User.create(req.body);
-        return res.redirect('/users/sign-in'); // Updated the redirect path
+        return res.redirect('/'); // Updated the redirect path
       } else {
         return res.redirect('back');
       }
     } catch (err) {
-      console.log('error in finding/creating user while signing up:', err);
+      console.log('error in finding/creating user, while signing up:', err);
       return res.redirect('back');
     }
 };
 
 module.exports.createSession = function(req, res){
-    console.log(req.user)
-    console.log('cookie: ',req.cookies)
+    req.flash('success', 'Loged in successfully!');
     return res.redirect('/');
 }
-  
+
+module.exports.destroySession = function(req, res) {
+    // Clear the "myCookie" cookie
+    req.logout(function(err) {
+        if (err) {
+            // Handle any error that might occur during logout
+            console.error('Error during logout:', err);
+        }
+
+        req.flash('success', 'Logged out successfully!');
+        return res.redirect('/');
+    });
+};
+
+
 module.exports.update = async function(req, res){
     try{
         if(req.user.id == req.params.id){

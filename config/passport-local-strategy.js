@@ -5,23 +5,25 @@ const User = require('../models/user');
 // Authentication using passport
 // Telling passport to use LocalStrategy[passport-local] and setting that usernameField should be 'email'
 passport.use(new LocalStrategy({
-    usernameField: 'email'
-}, async function(email, password, done) {
+    usernameField: 'email',
+    passReqToCallback: true
+}, async function(req, email, password, done) {
     try {
         // Find the user
         const user = await User.findOne({ email: email });
 
         if (!user || user.password !== password) {
-            console.log('Invalid Username/Password');
+            req.flash('error', 'Invalid Username/Password'); // 'error' is the message type
             return done(null, false);
         }
 
         return done(null, user);
     } catch (err) {
-        console.error('Error in finding the user --> passport');
+        req.flash('error', err.message); // 'error' is the message type
         return done(err);
     }
 }));
+
 
 
 // Serializing the user, which decides which key is to be stored in the cookie in the browser.

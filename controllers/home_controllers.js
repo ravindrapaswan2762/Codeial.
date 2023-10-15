@@ -14,8 +14,7 @@ module.exports.home = async function(req, res){
             populate: {
                 path: 'user'
             }
-        })
-        .exec();
+        });
     
         return res.render('home', {
             title: 'Codeial | Home',

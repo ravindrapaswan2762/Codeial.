@@ -11,10 +11,10 @@ router.get('/profile/:id', passport.checkAuthentication, userController.profile)
 
 router.get('/sign-up', userController.signUp);
 router.get('/sign-in', userController.signIn);
-router.get('/sign-out', userController.signOut);
+router.get('/sign-out', userController.destroySession);
 router.post('/update/:id', userController.update);
 
-router.post('/create', postController.create);
+router.post('/create', userController.create);
 
 // user is signing-in using 'passport.authenticate' where 'local' authentication strategy is used.
 //                             inbuild function in pasport library 
