@@ -23,9 +23,3 @@ ol {
   ol li {
     border: 2px solid black;
     margin: 3px; }
-
-#post-list {
-  max-width: 25rem;
-  overflow: hidden;
-  padding: 0px 10px;
-  text-align: center; }

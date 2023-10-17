@@ -1,6 +1,9 @@
-//  Couple Of Actions Over Here.
 
 const User = require('../models/user');
+
+//FOR reading files and delete it
+const fs = require('fs');
+const path = require('path');
 
 module.exports.profile = async function(req, res) {
     try {
@@ -48,6 +51,7 @@ module.exports.signUp = function(req, res){
 
 //GET THE SIGN-UP DATA
 module.exports.create = async function(req, res) {
+    
     if (req.body.password !== req.body.confirm_password) {
       return res.redirect('back');
     }
@@ -73,7 +77,7 @@ module.exports.createSession = function(req, res){
 }
 
 module.exports.destroySession = function(req, res) {
-    // Clear the "myCookie" cookie
+    
     req.logout(function(err) {
         if (err) {
             // Handle any error that might occur during logout
@@ -87,14 +91,33 @@ module.exports.destroySession = function(req, res) {
 
 
 module.exports.update = async function(req, res){
-    try{
-        if(req.user.id == req.params.id){
-            await User.findByIdAndUpdate(req.params.id, {name: req.body.name, email: req.body.email});
+    if(req.user.id == req.params.id){
+        try{
+            let user = await User.findById(req.params.id);
+            User.uploadedAvatar(req, res, function(error){
+                if(error){
+                    console.log('**********Multer error : ', error);
+                }
+                user.name = req.body.name;
+                user.email = req.body.email;
+                if(req.file){
+                    console.log('req.file : ',req.file)
+                    if (user.avatar && fs.existsSync(path.join(__dirname, '..', user.avatar))) {
+                        fs.unlinkSync(path.join(__dirname, '..', user.avatar));
+                    }
+                    //This is saving the path of uploaded file into the avatar field in the user.
+                    user.avatar = User.avatarPath + '/' + req.file.filename;
+                }
+                user.save()
+                return res.redirect('back');
+            });
+
+        }catch(error){
+            req.flash('error', error);
             return res.redirect('back');
         }
-    }
-    catch(err){
-        console.log('Error in updating profile page.')
+    }else{
+        req.flash('Error, Unauthorize!');
         return res.status(401).send('Unauthorized');
     }
 }

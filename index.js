@@ -38,6 +38,8 @@ app.set('layout extractScripts', true);
 
 app.use(expressLayouts); //launching layouts before router 
 
+app.use('/uploads', express.static(__dirname + '/uploads'));// Make the uploads path available to the browser
+
 
 //setting view engine
 app.set('view engine', 'ejs');//setting ejs

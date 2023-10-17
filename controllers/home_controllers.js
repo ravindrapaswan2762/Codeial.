@@ -8,6 +8,7 @@ module.exports.home = async function(req, res){
         const users = await User.find({});
 
         const allPosts = await Post.find({})
+        .sort('-createdAt')// display newest post on top
         .populate('user')
         .populate({
             path: 'comments',

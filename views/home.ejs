@@ -1,44 +1,52 @@
 <link rel="stylesheet" href="/css/home.css">
+<link rel="stylesheet" href="/css/_post.css">
+
 
 <h1>
     <%= title %>
 </h1>
 
-<div id="main-container">
+       <div id="main-container">
+
     <section id="feed-posts">
         <h4>Posts</h4>
+        <!-- ----------------------------------------- Post Form--------------------------------------------------- -->
         <%if(locals.user){%>
             <form action="/posts/create" id="new-form-post" method="POST">
                 <textarea name="content" cols="30" rows="3" placeholder="Type Here.."></textarea>
                 <input type="submit" value="Post">
             </form>
         <%}%>
-    
+        <!-- ---------------------------------Post Container------------------------------------------------ -->
         <div id="post-list-container">
+
             <ol type="1">
                 <% for(let post of allPosts){%>
-                    <li>
-                        <%= post.content%>
+                    <!-- ************************************************** Post ********************* -->
+                    <li id="post-<%= post._id%>">
+   
                         <small style="font-weight: bolder;"><%= post.user.name%>: </small>
-    
+                        <small style="font-weight: bolder;"><%= post.content%> </small>
+
+                        <!-- ---------------------------------------------------------Comment Form -->
                         <div class="post-comment">
                             <%if(locals.user){%>
                                 <form action="/comments/create" method="POST">
                                     <input type="text" name="comment" placeholder="Type here to add comment.." >
-                                    <input type="hidden" name="post" value="<%= post.id %>" >
+                                    <input type="hidden" name="post" value="<%= post._id %>" >
                                     <input type="submit" value="Add Comment">
                                 </form>
                             <%}%>
-    
+                        <!-- -------------------------------------------------------- Post Delete -->
                             <p>
                                 <%if(locals.user && locals.user.id == post.user.id){%>
                                     
                                         <small>
-                                            <a href="/posts/destroy/<%= post.id%>">Delete</a>
+                                            <a class="delete-post-button" href="/posts/destroy/<%= post._id%>">Delete</a>
                                         </small>
                                 <%}%>
                             </p>
-    
+                        <!-- -------------------------------------------------------- post wise all coments-->
                             <div class="post-comments-list">
                                 <div id="posted-comment">
                                     <%for(let comment of post.comments){%>
@@ -55,16 +63,19 @@
                                 </div>
                             </div>
                         </div>
-    
+                    
                         <br/>
                     </li>
+                    <!-- **************************************************************************** -->
         
                 <%} %>
             </ol>
         </div>
         
     </section>
-    
+
+
+    <!-- ------------------------------------------------------------------------Friend list -->
     <section id="friend-list">
         <h4>Friends</h4>
         <%for(let user of allUsers){%>
@@ -75,6 +86,6 @@
     </section>
 </div>
 
-
+<script src="js/home_post.js"></script>
 
 

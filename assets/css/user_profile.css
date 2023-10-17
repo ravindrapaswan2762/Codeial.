@@ -1,2 +1,7 @@
 body {
   text-align: center; }
+
+#profile-pic {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%; }

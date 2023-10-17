@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
 
-
+    <!-- include it just bellow Noty-cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="/css/layout.css">
     <link rel="stylesheet" href="/css/header.css">
@@ -21,34 +22,34 @@
     <!-- adding header from view -->
     <%- include('_header'); %>
 
-    <%- body %>
+        <%- body %>
 
-    <!-- adding footer from view -->
-    <%- include('_footer'); %>
+            <!-- adding footer from view -->
+            <%- include('_footer'); %>
 
-    <%- script %>
+                <%- script %>
 
-    <script>
-        <%if(flash.success && flash.success.length> 0){%>
-            new Noty({
-                theme: 'relax',
-                text: '<%= flash.success%>',
-                type: 'success',
-                layout: 'topRight',
-                timeout: 1500
-            }).show();
+                    <script>
+        <%if (locals.flash.success && locals.flash.success.length > 0) {%>
+                            new Noty({
+                                theme: 'relax',
+                                text: '<%= locals.flash.success%>',
+                                type: 'success',
+                                layout: 'topRight',
+                                timeout: 1500
+                            }).show();
         <%}%>
 
-        <%if(flash.error && flash.error.length> 0){%>
-            new Noty({
-                theme: 'relax',
-                text: '<%= flash.error%>',
-                type: 'error',
-                layout: 'topRight',
-                timeout: 3000
-            }).show();
+        <%if (locals.flash.error && locals.flash.error.length > 0) {%>
+                            new Noty({
+                                theme: 'relax',
+                                text: '<%= locals.flash.error%>',
+                                type: 'error',
+                                layout: 'topRight',
+                                timeout: 3000
+                            }).show();
         <%}%>
-    </script>
+                    </script>
 
 </body>
 

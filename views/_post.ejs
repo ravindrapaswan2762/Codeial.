@@ -1,0 +1,31 @@
+
+
+<li>
+    <p>
+        <%if(locals.user && locals.user.id == post.user.id){%>
+            
+                <small>
+                    <a href="/posts/destroy/<%= post.id%>">Delete</a>
+                </small>
+        <%}%>
+    </p>
+
+    <div class="post-comments-list">
+        <div id="posted-comment">
+            <%for(let comment of post.comments){%>
+                <li>
+                    <p>
+                        <small style="font-weight: bold;"><%= comment.user.name%>: </small>
+                        <%= comment.content%>
+                        <%if(locals.user && locals.user.id == comment.user.id){%>
+                            <small>
+                                <a href="/comments/destroy/<%= comment.id%>">Delete</a>
+                            </small>
+                        <%}%>
+                    </p>
+                </li>
+            <%}%>
+        </div>
+    </div>
+    
+</li>
