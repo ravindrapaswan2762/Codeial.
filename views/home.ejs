@@ -80,7 +80,15 @@
         <h4>Friends</h4>
         <%for(let user of allUsers){%>
                 <a href="/users/profile/<%= user.id%>">
-                    <p><%= user.name%></p>
+                    <div id="profile_userName">
+                        <%if(user.avatar){%>
+                            <img src="<%= user.avatar%>" id="profile-pic" alt="IMAGE" width="50">
+                        <%}else{%>
+                            <img src="/uploads/users/avatars/default-avatar.jpg" id="profile-pic" alt="IMAGE" width="50">
+                        <%}%>
+                        
+                        <span id="userName"><%= user.name%></span>
+                    </div>
                 </a>
         <%}%>
     </section>

@@ -101,7 +101,6 @@ module.exports.update = async function(req, res){
                 user.name = req.body.name;
                 user.email = req.body.email;
                 if(req.file){
-                    console.log('req.file : ',req.file)
                     if (user.avatar && fs.existsSync(path.join(__dirname, '..', user.avatar))) {
                         fs.unlinkSync(path.join(__dirname, '..', user.avatar));
                     }

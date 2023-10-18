@@ -1,3 +1,7 @@
+*{
+    // overflow: hidden;
+}
+
 #main-container{
     display: flex;
 }
@@ -31,4 +35,17 @@ ol{
     overflow: hidden; 
     padding: 0px 10px;
     text-align: center;
+}
+//------------------------------------ friend list
+#profile_userName{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+#profile-pic{
+    border-radius: 50%;
+}
+#userName{
+    padding: 0px 10px;
 }
